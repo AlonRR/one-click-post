@@ -17,7 +17,7 @@ class PopUp extends Component {
         return (
             <div className="add-post-popup" >
                 <div  onClick={() => this.openModal()}>Create New Post</div>
-                <Modal className="popup" visible={popUpSettings} width="400" height="300" effect="fadeInUp" onClickAway={() => this.closeModal()}>
+                <Modal  visible={popUpSettings} width="400" height="300" effect="fadeInUp" onClickAway={() => this.closeModal()}>
                     <Post />
                 </Modal>
             </div>

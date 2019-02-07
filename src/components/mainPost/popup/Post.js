@@ -8,8 +8,8 @@ import Poster from './Poster';
 class Post extends Component {
   render() {
     return (
-      <div className="post">
-    <TextInput />
+      <div class="popup-content">
+       <TextInput />
        <CheckInputs />
        <Poster />
      </div>

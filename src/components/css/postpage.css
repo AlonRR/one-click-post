@@ -22,6 +22,7 @@ body{
 }
 .post-list{
     display: grid;
+    margin-top: 5px;
     grid-auto-columns: repeat(1fr,6);
     /* grid-column: 1 / 2;  */
     border:black, solid, 1px;
@@ -47,16 +48,16 @@ body{
     
 }
 .post:hover {
-    background-color: #4ab3f4;
+    /* border:  */
     box-shadow: 0px 3px 5px -1px rgba(0,0,0, 0.2), 0px 5px 8px 0px rgba(0,0,0,0.14), 0px 1px 14px 0px rgba(0,0,0, 0.12);
-
+    background-color: #eee;
 }
 .main-social{
     display: grid;
     
    
     /* background: #4abdac; */
-    align-items: center;
+    align-items: start;
     border: fff92e groove 5px;
     border-radius: 10%;
    
@@ -129,9 +130,13 @@ body{
    border-radius:  5px;
 }
 
-.popupPost{
-    display: flex;
-    background: #637aad;
+.popup-content{
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-gap: 10%;
+    align-items: center;
+    align-items: center;
+    background: #294c96;
     height: 100%;
 }
 

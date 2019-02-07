@@ -46,8 +46,8 @@
 }
 
 #inputfield{
-  border: #DCDDD9, solid, 1px;
-  border-radius: 5px;
+  /* border: #DCDDD9, solid, 1px; */
+  /* border-radius: 5px; */
   text-transform: uppercase;
 }
 
