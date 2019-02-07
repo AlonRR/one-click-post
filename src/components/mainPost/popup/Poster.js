@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
 import Axios from 'axios';
-// import io from 'socket.io-client'
 import { observer, inject } from 'mobx-react'
 import test_URL from '../../../test_URL'
-
-// const socket = io(test_URL)
 
 @inject(`PostStore`, `StartPageStore`, `SocialNetStore`, `MainPostPageStore`)
 @observer
@@ -19,12 +16,12 @@ class Poster extends Component {
             text: this.props.PostStore.Text,
             img: this.props.PostStore.Image
         }
-        // console.log(clientInput)
-        this.props.MainPostPageStore.addPost(this.props.PostStore.Text, this.props.SocialNetStore.networksUsed)
-        this.props.PostStore.deletInput()
-        this.closeModal()
+        console.log(clientInput)
         Axios.post(url, clientInput)
         .then(res => {
+            this.props.MainPostPageStore.addPost(this.props.PostStore.Text, this.props.SocialNetStore.networksUsed)
+            this.props.PostStore.deletInput()
+            this.closeModal()
             // this.props.PostStore.resetValues()
             })
             .catch(err=>console.log(err))

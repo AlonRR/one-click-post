@@ -14,7 +14,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-        {/* <DevTools/> */}
+        <DevTools/>
           <Navbar />
           <Route path="/profile" exact render={({ match }) => <Profile />} />
           <Route path="/" exact render={({ match }) => <StartPage loginPage={false}/>} />

@@ -38,13 +38,13 @@ router.post(`/post`, async (req, res) => {
       access_token_key: twitterKeys.accessToken,
       access_token_secret: twitterKeys.accessTokenSecret
    })
-   let twitterposter = currentUser.post(`statuses/update`, { status: req.body.text })
-      .then((res) => {
-         sqlOperations.savepost(res)
-      })
-      .catch(err => {
-         throw err
-      })
+   // let twitterposter = currentUser.post(`statuses/update`, { status: req.body.text })
+   //    .then((res) => {
+   //       sqlOperations.savepost(res)
+   //    })
+   //    .catch(err => {
+   //       throw err
+   //    })
    let linkedinPost = {
       method: 'POST',
       url: 'https://api.linkedin.com/v2/shares',
@@ -63,20 +63,59 @@ router.post(`/post`, async (req, res) => {
       json: true
    }
    // "X-Restli-Protocol-Version": "2.0.0",
-   let linkedposter = request.post(linkedinPost, (err, res) => {
-      if (err) {
-         console.log(err)
+   // let linkedposter = request.post(linkedinPost, (err, res) => {
+   //    if (err) {
+   //       console.log(err)
+   //    }
+   //    else {
+   //       sqlOperations.savepost(res)
+   //    }
+   // })
+   poster = {
+      linkedin: () => {
+         request.post(linkedinPost, (err, res) => {
+            if (err) {
+               console.log(err)
+            }
+            else {
+               sqlOperations.savepost(res)
+            }
+         })
+      },
+      twitter: () => {
+         currentUser.post(`statuses/update`, { status: req.body.text })
+            .then((res) => {
+               sqlOperations.savepost(res)
+            })
+            .catch(err => {
+               throw err
+            })
       }
-      else {
-         sqlOperations.savepost(res)
-      }
-   })
-   let poster = {
-      linkedin: linkedposter(),
-      twitter: twitterposter()
    }
-   req.body.foreach(network => {
-      poster[network]
+   console.log(req.body.networks)
+   req.body.networks.forEach(network => {
+      console.log(network)
+      if (network === `twitter`) {
+         console.log(network)
+         currentUser.post(`statuses/update`, { status: req.body.text })
+            .then((res) => {
+               sqlOperations.savepost(res)
+            })
+            .catch(err => {
+               throw err
+            })
+      }
+      if (network === `linkedin`) {
+         console.log(network)
+         request.post(linkedinPost, (err, res) => {
+            if (err) {
+               console.log(err)
+            }
+            else {
+               sqlOperations.savepost(res)
+            }
+         })
+      }
    })
    res.send(true)
 })

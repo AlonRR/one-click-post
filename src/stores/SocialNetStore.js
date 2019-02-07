@@ -11,9 +11,10 @@ class SocialNetStore {
         this.networks[name] = !this.networks[name]
     }
     @computed get networksUsed() {
-        let networkArray = Object.keys(this.networks).map(network => {
+        let networkArray = []
+        Object.keys(this.networks).map(network => {
             if (this.networks[network]) {
-                return network
+                networkArray.push(network)
             }
         })
         return networkArray
